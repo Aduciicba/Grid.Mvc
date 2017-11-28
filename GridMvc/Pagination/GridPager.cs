@@ -9,6 +9,23 @@ namespace GridMvc.Pagination
     /// <summary>
     ///     Default grid pager implementation
     /// </summary>
+
+    public class AjaxGridPager : GridPager
+    {
+        public const string DefaultAjaxPagerViewName = "_AjaxGridPager";
+
+        public AjaxGridPager()
+            : this(HttpContext.Current)
+        {
+        }
+
+        public AjaxGridPager(HttpContext context)
+            : base(context)
+        {
+            TemplateName = DefaultAjaxPagerViewName;
+        }
+    }
+
     public class GridPager : IGridPager
     {
         public const int DefaultMaxDisplayedPages = 5;

@@ -14,6 +14,24 @@ namespace GridMvc
     /// <summary>
     ///     Grid.Mvc base class
     /// </summary>
+    /// 
+
+    public class AjaxGrid<T> : Grid<T> 
+        where T : class
+    {
+        public AjaxGrid(IEnumerable<T> items)
+            : this(items.AsQueryable())
+        {
+            
+        }
+
+        public AjaxGrid(IQueryable<T> items)
+            : base(items)
+        {
+            Pager = new AjaxGridPager();
+        }
+    }
+
     public class Grid<T> : GridBase<T>, IGrid where T : class
     {
         private readonly IGridAnnotaionsProvider _annotaions;
