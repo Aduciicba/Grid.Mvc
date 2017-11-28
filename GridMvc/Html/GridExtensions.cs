@@ -18,19 +18,7 @@ namespace GridMvc.Html
             return Grid(helper, items, DefaultPartialViewName);
         }
 
-        public static HtmlGrid<T> AjaxGrid<T>(this HtmlHelper helper, IEnumerable<T> items)
-            where T : class
-        {
-            return AjaxGrid(helper, items, DefaultPartialViewName);
-        }
-
         public static HtmlGrid<T> Grid<T>(this HtmlHelper helper, IEnumerable<T> items, string viewName)
-            where T : class
-        {
-            return Grid(helper, items, GridRenderOptions.Create(string.Empty, viewName));
-        }
-
-        public static HtmlGrid<T> AjaxGrid<T>(this HtmlHelper helper, IEnumerable<T> items, string viewName)
             where T : class
         {
             return Grid(helper, items, GridRenderOptions.Create(string.Empty, viewName));
@@ -46,16 +34,6 @@ namespace GridMvc.Html
             return htmlGrid;
         }
 
-        public static HtmlGrid<T> AjaxGrid<T>(this HtmlHelper helper, IEnumerable<T> items,
-            GridRenderOptions renderOptions)
-            where T : class
-        {
-            var newGrid = new AjaxGrid<T>(items.AsQueryable());
-            newGrid.RenderOptions = renderOptions;
-            var htmlGrid = new HtmlGrid<T>(newGrid, helper.ViewContext, renderOptions.ViewName);
-            return htmlGrid;
-        }
-
         public static HtmlGrid<T> Grid<T>(this HtmlHelper helper, Grid<T> sourceGrid)
             where T : class
         {
@@ -64,23 +42,7 @@ namespace GridMvc.Html
             return htmlGrid;
         }
 
-        public static HtmlGrid<T> AjaxGrid<T>(this HtmlHelper helper, AjaxGrid<T> sourceGrid)
-            where T : class
-        {
-            //wrap source grid:
-            var htmlGrid = new HtmlGrid<T>(sourceGrid, helper.ViewContext, DefaultPartialViewName);
-            return htmlGrid;
-        }
-
         public static HtmlGrid<T> Grid<T>(this HtmlHelper helper, Grid<T> sourceGrid, string viewName)
-            where T : class
-        {
-            //wrap source grid:
-            var htmlGrid = new HtmlGrid<T>(sourceGrid, helper.ViewContext, viewName);
-            return htmlGrid;
-        }
-
-        public static HtmlGrid<T> AjaxGrid<T>(this HtmlHelper helper, AjaxGrid<T> sourceGrid, string viewName)
             where T : class
         {
             //wrap source grid:
